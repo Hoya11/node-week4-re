@@ -3,7 +3,6 @@ const User = require("../schemas/user");
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
-  console.log(authorization);
   const [tokenType, tokenValue] = authorization.split(" ");
 
   if (tokenType !== "Bearer") {
