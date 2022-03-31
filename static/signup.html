@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <!-- jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+
+    <title>글 작성하기</title>
+
+    <script>
+      function signup() {
+        const nickname = $("#nickname").val();
+        const password = $("#password").val();
+        const confirmPassword = $("#confirmPassword").val();
+        $.ajax({
+          type: "POST",
+          url: "/api/users",
+          data: { nickname, password, confirmPassword },
+          success: function (response) {
+            alert("환영합니다!");
+            window.location.href = "/login.html";
+          },
+          error: function (xhr) {
+            const err = eval("(" + xhr.responseText + ")");
+            alert(err.errorMessage);
+          },
+        });
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="header">
+      <a href="/board.html">
+        <h1>Node js 게시판</h1>
+      </a>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <h2>회원가입</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">닉네임</span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="2글자 이상 영어, 숫자"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+              id="nickname"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">비밀번호</span>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="4자리 이상 적어주세요"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+              id="password"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"
+              >비밀번호 확인</span
+            >
+            <input
+              type="password"
+              class="form-control"
+              placeholder="비밀번호 재입력"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+              id="confirmPassword"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <button
+            type="button"
+            class="btn btn-dark float-end"
+            onclick="signup()"
+          >
+            가입하기
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
